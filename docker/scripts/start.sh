@@ -116,6 +116,14 @@ function runSitespeedio(){
   wait $PID
 }
 
+# Extra start script that the user can copy to the container and run before before SiteSpeedIO/Web Page Replay tasks
+# For example, adding certificates to the store (https://github.com/sitespeedio/sitespeed.io/issues/2352)
+if [ -f $EXTRA_START_SCRIPT ]
+then
+   chmod +x $EXTRA_START_SCRIPT
+   $EXTRA_START_SCRIPT
+fi
+
 setupADB
 
 if [ $REPLAY ]
